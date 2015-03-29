@@ -26,6 +26,13 @@ gulp.task('sass-foundation', function() {
 		.pipe(livereload());
 });
 
+gulp.task('sass-normalize', function() {
+	gulp.src('./foundation/scss/normalize.scss')
+		.pipe(sass())
+		.pipe(gulp.dest('./foundation/'))
+		.pipe(livereload());
+});
+
 //Scripts
 gulp.task('scripts', function() {
 	gulp.src(['./js/*.js'])
@@ -47,9 +54,11 @@ gulp.task('watch', function() {
 	livereload.listen();
 	//watch scss files
 	gulp.watch('sass/**/*.scss', ['sass-theme']);
+	gulp.watch('foundation/scss/**/*.scss', ['sass-foundation']);
+	gulp.watch('foundation/scss/normalize.scss', ['sass-normalize']);
 	
 	//watch js files
 	gulp.watch('js/*.js', ['scripts', 'lint']);
 });
 
-gulp.task('default', ['sass-theme', 'scripts', 'lint', 'watch']);
+gulp.task('default', ['sass-theme', 'sass-foundation', 'sass-normalize', 'scripts', 'lint', 'watch']);
