@@ -34,12 +34,38 @@ gulp.task('sass-normalize', function() {
 });
 
 //Scripts
-gulp.task('scripts', function() {
-	gulp.src(['./js/*.js'])
+gulp.task('scripts-theme', function() {
+	gulp.src(['./js/lib/*.js'])
 		.pipe(sourcemaps.init())
 		.pipe(concat('all.js'))
 		.pipe(sourcemaps.write())
 		.pipe(gulp.dest('./js/dist/'));
+});
+
+gulp.task('scripts-foundation', function() {
+	gulp.src([
+		'./foundation/js/foundation/foundation.js',
+		'./foundation/js/foundation/foundation.abide.js',
+		'./foundation/js/foundation/foundation.accordion.js',
+		'./foundation/js/foundation/foundation.alert.js',
+		'./foundation/js/foundation/foundation.clearing.js',
+		'./foundation/js/foundation/foundation.dropdown.js',
+		'./foundation/js/foundation/foundation.equalizer.js',
+		'./foundation/js/foundation/foundation.interchange.js',
+		'./foundation/js/foundation/foundation.joyride.js',
+		'./foundation/js/foundation/foundation.magellan.js',
+		'./foundation/js/foundation/foundation.offcanvas.js',
+		'./foundation/js/foundation/foundation.orbit.js',
+		'./foundation/js/foundation/foundation.reveal.js',
+		'./foundation/js/foundation/foundation.slider.js',
+		'./foundation/js/foundation/foundation.tab.js',
+		'./foundation/js/foundation/foundation.tooltip.js',
+		'./foundation/js/foundation/foundation.topbar.js'
+		])
+		.pipe(sourcemaps.init())
+		.pipe(concat('foundation-all.js'))
+		.pipe(sourcemaps.write())
+		.pipe(gulp.dest('./foundation/js/'));
 });
 
 //JSHint
@@ -58,7 +84,7 @@ gulp.task('watch', function() {
 	gulp.watch('foundation/scss/normalize.scss', ['sass-normalize']);
 	
 	//watch js files
-	gulp.watch('js/*.js', ['scripts', 'lint']);
+	gulp.watch('js/lib/*.js', ['scripts-theme', 'lint']);
 });
 
-gulp.task('default', ['sass-theme', 'sass-foundation', 'sass-normalize', 'scripts', 'lint', 'watch']);
+gulp.task('default', ['sass-theme', 'sass-foundation', 'sass-normalize', 'scripts-theme', 'scripts-foundation', 'lint', 'watch']);

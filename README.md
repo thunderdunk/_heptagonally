@@ -11,19 +11,60 @@ _heptagonally comes with a basic `gulpfile.js`, a `package.json` file and a blan
 
 	$ npm install --global gulp
 
+
 2. Install gulp in your project devDependencies:
 
 	$ npm install --save-dev gulp
 
+
 3. Install the gulp plugins that are included in this theme:
 
 	$ npm install --save-dev gulp-util gulp-watch gulp-sourcemaps gulp-sass gulp-concat gulp-jshint jshint-stylish gulp-livereload
+	
 
 
 
 **Sass**
 Underscores Sass is compiled into the main theme stylesheet, `style.css`
-Foundation Sass is compiled separately in the `foundation` folder, and is enqueued in `functions.php`
+Foundation Sass and `normalize.scss` are compiled separately in the `foundation` folder, and enqueued in `functions.php`
+
+
+**JS**
+Foundations JS is all concatenated into a `foundations-all.js` file, which is enqueued in `functions.php`.
+
+Individual plugins are all included by default, but can be removed from the concatenated file by commenting out the individual scripts in `gulpfile.js`. Example:
+
+	gulp.task('scripts-foundation', function() {
+	gulp.src([
+		'./foundation/js/foundation/foundation.js',
+		'./foundation/js/foundation/foundation.abide.js',
+		//'./foundation/js/foundation/foundation.accordion.js',
+		//'./foundation/js/foundation/foundation.alert.js',
+		'./foundation/js/foundation/foundation.clearing.js',
+		'./foundation/js/foundation/foundation.dropdown.js',
+		'./foundation/js/foundation/foundation.equalizer.js',
+		'./foundation/js/foundation/foundation.interchange.js',
+		'./foundation/js/foundation/foundation.joyride.js',
+		'./foundation/js/foundation/foundation.magellan.js',
+		//'./foundation/js/foundation/foundation.offcanvas.js',
+		'./foundation/js/foundation/foundation.orbit.js',
+		'./foundation/js/foundation/foundation.reveal.js',
+		'./foundation/js/foundation/foundation.slider.js',
+		'./foundation/js/foundation/foundation.tab.js',
+		'./foundation/js/foundation/foundation.tooltip.js',
+		'./foundation/js/foundation/foundation.topbar.js'
+		])
+		.pipe(sourcemaps.init())
+		.pipe(concat('foundation-all.js'))
+		.pipe(sourcemaps.write())
+		.pipe(gulp.dest('./foundation/js/'));
+	});
+
+These files are *not* watched.
+
+Modernizer is enqueued separately in `functions.php`
+
+
 
 
 [![Build Status](https://travis-ci.org/Automattic/_s.svg?branch=master)](https://travis-ci.org/Automattic/_s)

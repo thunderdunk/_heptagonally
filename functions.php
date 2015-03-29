@@ -100,7 +100,22 @@ add_action( 'widgets_init', '_heptagonally_widgets_init' );
  * Enqueue scripts and styles.
  */
 function _heptagonally_scripts() {
+
+	// Foundation stylesheets
+	wp_enqueue_style( '_heptagonally-foundation-normalize', get_template_directory_uri() . '/foundation/normalize.css' );
+	wp_enqueue_style( '_heptagonally-foundation-style', get_template_directory_uri() . '/foundation/foundation.css' );
+
+	// Main theme stylesheet
 	wp_enqueue_style( '_heptagonally-style', get_stylesheet_uri() );
+
+	//Modernizer
+	wp_enqueue_script( '_heptagonally-modernizr', get_template_directory_uri() . '/foundation/js/vendor/modernizr.js', array('jquery'), false, false );
+
+	//Foundation Scripts
+	wp_enqueue_script( '_heptagonally-foundation-scripts', get_template_directory_uri() . '/foundation/js/foundation-all.js', array('jquery'), '', true );
+
+	//Theme Scripts
+	wp_enqueue_script( '_heptagonally-scripts', get_template_directory_uri() . '/js/dist/all.js', array('jquery'), '', true );
 
 	wp_enqueue_script( '_heptagonally-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20120206', true );
 
