@@ -12,10 +12,17 @@ var stylish = require('jshint-stylish');
 var livereload = require('gulp-livereload');
 
 //Styles
-gulp.task('sass-theme', function () {
+gulp.task('sass-theme', function() {
 	gulp.src('./sass/style.scss')
 		.pipe(sass())
 		.pipe(gulp.dest('./'))
+		.pipe(livereload());
+});
+
+gulp.task('sass-foundation', function() {
+	gulp.src('./foundation/scss/foundation.scss')
+		.pipe(sass())
+		.pipe(gulp.dest('./foundation/'))
 		.pipe(livereload());
 });
 
