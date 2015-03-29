@@ -8,19 +8,19 @@ https://github.com/zurb/bower-foundation.git
 _heptagonally comes with a basic `gulpfile.js`, a `package.json` file and a blank `.gitignore` if you're into that sort of thing.
 
 1. Install gulp globally:
-
-	$ npm install --global gulp
-
+```
+$ npm install --global gulp
+```
 
 2. Install gulp in your project devDependencies:
-
-	$ npm install --save-dev gulp
-
+```
+$ npm install --save-dev gulp
+```
 
 3. Install the gulp plugins that are included in this theme:
-
-	$ npm install --save-dev gulp-util gulp-watch gulp-sourcemaps gulp-sass gulp-concat gulp-jshint jshint-stylish gulp-livereload
-	
+```
+$ npm install --save-dev gulp-util gulp-watch gulp-sourcemaps gulp-sass gulp-concat gulp-jshint jshint-stylish gulp-livereload
+```
 
 
 
@@ -33,7 +33,7 @@ Foundation Sass and `normalize.scss` are compiled separately in the `foundation`
 Foundations JS is all concatenated into a `foundations-all.js` file, which is enqueued in `functions.php`.
 
 Individual plugins are all included by default, but can be removed from the concatenated file by commenting out the individual scripts in `gulpfile.js`. Example:
-
+```javascript
 	gulp.task('scripts-foundation', function() {
 	gulp.src([
 		'./foundation/js/foundation/foundation.js',
@@ -59,7 +59,7 @@ Individual plugins are all included by default, but can be removed from the conc
 		.pipe(sourcemaps.write())
 		.pipe(gulp.dest('./foundation/js/'));
 	});
-
+```
 These files are *not* watched.
 
 Modernizer is enqueued separately in `functions.php`
